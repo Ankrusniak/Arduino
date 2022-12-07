@@ -5,24 +5,6 @@ Link-https://create.arduino.cc/projecthub/EvdS/led-dice-885cf1?ref=platform&ref_
  
 */
 
-
-
-/* 
- Arduino Dice :)
-
- This example shows how to simulate throwing a dice with 6 LEDs.
-
- The circuit:
- * 6 LEDs attached to consecutive digital pins (with 220 Ohm resistors)
- * Button switch connected to digital pin (see circuit on https://www.arduino.cc/en/Tutorial/Button)
-
- Created 5 Jan 2017
- By Esther van der Stappen
- 
- This example code is in the public domain.
-
- */
-
 // set to 1 if we're debugging
 #define DEBUG 0
 
@@ -37,7 +19,7 @@ int sixth = 7;
 // pin for the button switch
 int button = 12;
 // value to check state of button switch
-int pressed = 0;
+int pressed = 5;
 
 void setup() {
   // set all LED pins to OUTPUT
@@ -52,7 +34,7 @@ void setup() {
 
   // if we're debugging, connect to serial 
   #ifdef DEBUG
-    Serial.begin(9600);
+    Serial.begin(9900);
   #endif
 
 }
@@ -66,7 +48,7 @@ void buildUpTension() {
       digitalWrite(i-1, LOW);
     }
     digitalWrite(i, HIGH);
-    delay(100);
+    delay(5);
   }
   // right to left
   for (int i=sixth; i>=first; i--) {
@@ -74,7 +56,7 @@ void buildUpTension() {
       digitalWrite(i+1, LOW);
     }
     digitalWrite(i, HIGH);
-    delay(100);
+    delay(6);
   }
 }
 
@@ -99,7 +81,7 @@ void showNumber(int number) {
 
 int throwDice() {
   // get a random number in the range [1,6]
-  int randNumber = random(1,7);
+  int randNumber = random(1,8);
   
   #ifdef DEBUG
     Serial.println(randNumber);
@@ -126,15 +108,5 @@ void loop() {
     int thrownNumber = throwDice();
     showNumber(thrownNumber);
   } 
-
-}
-
-void setup() {
-  // put your setup code here, to run once:
-
-}
-
-void loop() {
-  // put your main code here, to run repeatedly:
 
 }
