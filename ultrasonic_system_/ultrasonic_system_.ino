@@ -41,31 +41,33 @@ void loop() {
       digitalWrite(LEDlampGreen, LOW);
   }
   
-  if (distanceincm < 7) {
+  if (distanceincm <= 6 && distanceincm >= 4) {
     digitalWrite(LEDlampYellow, HIGH);
+    Serial.println("Really close- Be ready to stop");
 }
   else {
     digitalWrite(LEDlampYellow,LOW);
   }
-  if (distanceincm < 5) {
+  if (distanceincm < 4) {
     digitalWrite(LEDlampRed, HIGH);
-    sound = 1000;
+    Serial.println("Stop Now"); 
+    tone(soundbuzzer, sound);
 }
   else {
     digitalWrite(LEDlampRed,LOW);
   }
  
-  if (distanceincm > 5 || distanceincm <= 0){
-    Serial.println("Outside the permissible range of distances");
+  if (distanceincm > 10 || distanceincm <= 0){
+    Serial.println("You are clear");
     noTone(soundbuzzer);
   }
   else {
     Serial.print(distanceincm);
     Serial.println(" cm");
-   
+   Serial.println(" ");
   }
   
-  delay(300);
+  delay(1000);
 }
  
  
